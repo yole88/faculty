@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="action_faculty_students" model="ir.actions.act_window">
+		<field name="name">Students</field>
+		<field name="res_model">faculty.students</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<record id="action_faculty_professors" model="ir.actions.act_window">
+		<field name="name">Professors</field>
+		<field name="res_model">faculty.professor</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<record id="action_faculty_course" model="ir.actions.act_window">
+		<field name="name">Courses</field>
+		<field name="res_model">faculty.course</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+    <record id="action_course_exam" model="ir.actions.act_window">
+		<field name="name">Exam</field>
+		<field name="res_model">faculty.course_exam</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	  <record id="faculty_students_views_search" model="ir.ui.view">
+        <field name="name">faculty.students.views.search</field>
+        <field name="model">faculty.students</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+	 <record id="view_faculty_students" model="ir.ui.view">
+            <field name="name">faculty.students.tree</field>
+            <field name="model">faculty.students</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+					<field name="credit"/>
+                </tree>
+            </field>
+	 </record>
+
+	<record id="faculty_students_form" model="ir.ui.view">
+            <field name="name">faculty.students.form</field>
+            <field name="model">faculty.students</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+							 <button class="oe_stat_button" type="object" name="get_courses"
+                                     icon="fa-tasks">
+                                 <field string="Courses" name="course_count" widget="statinfo"/>
+                              </button>
+						 </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                 <field name="credit"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+	<record id="view_faculty_professor" model="ir.ui.view">
+		<field name="name">faculty.professor.tree</field>
+		<field name="model">faculty.professor</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="user_id"/>
+			</tree>
+		</field>
+	 </record>
+
+	<record id="faculty_professor_form" model="ir.ui.view">
+            <field name="name">faculty.professor.form</field>
+            <field name="model">faculty.professor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+							 <button class="oe_stat_button" type="object" name="get_courses"
+                                     icon="fa-tasks">
+                                 <field string="Courses" name="course_count" widget="statinfo"/>
+                              </button>
+						 </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                 <field name="user_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+	<record id="faculty_course_search" model="ir.ui.view">
+        <field name="name">faculty.course.search</field>
+        <field name="model">faculty.course</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+				<field name="professor_id"/>
+				<field name="user_id"/>
+				<filter string="My course" name="my"
+                            domain="[('professor_id.user_id', '=', uid)]"/>
+            </search>
+        </field>
+    </record>
+
+	<record id="faculty_course_line_views_search" model="ir.ui.view">
+        <field name="name">faculty.course.line.views.search</field>
+        <field name="model">faculty.course.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="student_id"/>
+				<field name="course_id"/>
+            </search>
+        </field>
+    </record>
+
+
+	<record id="view_faculty_course_line" model="ir.ui.view">
+		<field name="name">faculty.course.line.tree</field>
+		<field name="model">faculty.course.line</field>
+		<field name="arch" type="xml">
+			<tree create="0">
+				<field name="student_id"/>
+			</tree>
+		</field>
+	 </record>
+
+    <record id="view_faculty_course_line_action" model="ir.ui.view">
+		<field name="name">faculty.course.line.action.tree</field>
+		<field name="model">faculty.course.line</field>
+		<field name="arch" type="xml">
+			<tree create="0">
+				<field name="course_id"/>
+                <field name="professor_id"/>
+			</tree>
+		</field>
+	 </record>
+
+    <record id="action_faculty_course_line" model="ir.actions.act_window">
+        <field name="name">Courses Line</field>
+        <field name="res_model">faculty.course.line</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_faculty_course_line"/>
+        <field name="context">{'search_default_course_id': active_id,
+            'default_course_id': active_id'}
+        </field>
+    </record>
+
+	<record id="view_faculty_course" model="ir.ui.view">
+		<field name="name">faculty.course.tree</field>
+		<field name="model">faculty.course</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="credit"/>
+			</tree>
+		</field>
+	 </record>
+
+	<record id="faculty_course_form" model="ir.ui.view">
+            <field name="name">faculty.course.form</field>
+            <field name="model">faculty.course</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+						 <div class="oe_button_box" name="button_box">
+							 <button class="oe_stat_button" type="action"
+									   name="%(action_faculty_course_line)d" icon="fa-tasks">
+								<field string="Students" name="student_count" widget="statinfo"/>
+                              </button>
+						 </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                 <field name="credit"/>
+								 <field name="professor_id"/>
+								 <field name="user_id"/>
+                            </group>
+                        </group>
+                        <newline/>
+                        <separator string="Description"/>
+                        <field name="description" />
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+     <record id="view_course_exam" model="ir.ui.view">
+            <field name="name">course.exam.tree</field>
+            <field name="model">faculty.course_exam</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="course_id"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+	 </record>
+
+    <record id="course_exam_form" model="ir.ui.view">
+            <field name="name">course.exam.form</field>
+            <field name="model">faculty.course_exam</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                         <div class="oe_button_box" name="button_box">
+							 <button name="button_download_exam" type="object" string="Download exam"
+                                     icon="fa-download"/>
+                             <button class="oe_stat_button" name="attachment_documents" type="object" icon="fa-file-text-o">
+                                 <field string="Documents" name="doc_count" widget="statinfo"/>
+                             </button>
+						 </div>
+                        <group>
+                            <group>
+                                <field name="course_id"/>
+                            </group>
+                             <group>
+                                <field name="date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                             <page string="Questions">
+                                 <field name="question_ids">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                             </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+	<menuitem name="Faculty"
+            id="menu_main_principal"
+            sequence="1"/>
+
+	<menuitem id="menu_faculty"
+			  name="Faculty"
+			  parent="menu_main_principal"
+			  sequence="1"/>
+
+	<menuitem action="action_faculty_course"
+			  id="menu_course"
+			  name="Courses"
+			  parent="menu_faculty"
+			  sequence="1"/>
+
+	<menuitem action="action_faculty_students"
+			  id="menu_students"
+			  name="Students"
+			  parent="menu_faculty"
+			  sequence="2"/>
+
+	<menuitem action="action_faculty_professors"
+			  id="menu_professor"
+			  name="Professors"
+			  parent="menu_faculty"
+			  sequence="3"/>
+
+    <menuitem action="action_course_exam"
+			  id="menu_exam"
+			  name="Exam"
+			  parent="menu_faculty"
+			  sequence="4"/>
+
+
+</odoo>

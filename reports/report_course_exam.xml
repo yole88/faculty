@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_course_exam_template">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                 <style>
+                     #company_logo{ width: 4cm; height: 2.0cm; padding-top: 0.5cm;}
+                    td{
+                    font-size:16px;text-align:justify;
+                    }
+                    h5{text-align: center;font-size: 14px;}
+                    h2{text-align: left;font-size: 14px;}
+                    h1{text-align: left;font-size: 14px;}
+                    p { font-size: 12pt; font-family:Arial;text-align:justify; }
+                    thead,th{ background-color: transparent; font-size: 11pt; font-family:Arial; }
+                    span { font-size: 12pt; font-family:Arial;text-align:justify; }
+                </style>
+                <h5  class="title uppercase">
+                    <span>Examen de curso</span>
+                </h5>
+                <t t-foreach="docs" t-as="o">
+                   <t t-set='obj' t-value="request.env['faculty.course_exam'].search([('id', '=', o.id)])" />
+                     <t t-foreach="obj" t-as="doc">
+                         <t t-foreach="doc.question_ids" t-as="q">
+                            <div class="col-xs-12" >
+                                <span t-esc="q_index + 1"/>) <span t-esc="q.name"/><br/><br/>
+                            </div>
+                         </t>
+                     </t>
+                </t>
+            </div>
+        </t>
+    </template>
+
+</odoo>

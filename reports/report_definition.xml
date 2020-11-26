@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+            id="report_course_exam"
+            string="Report exam"
+            model="faculty.course_exam"
+            report_type="qweb-pdf"
+            name="faculty.report_course_exam_template"
+            file="faculty.report_course_exam_template"
+        />
+
+        <record id="paperformat_report_exam" model="report.paperformat">
+        <field name="name">Report Letter Portrait Exam</field>
+        <field name="format">Letter</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">35</field>
+        <field name="margin_bottom">13</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">30</field>
+        <field name="dpi">90</field>
+        <field name="report_ids"
+               eval="[(6, 0, [ref('report_course_exam')])]"/>
+    </record>
+    </data>
+</odoo>
