@@ -73,6 +73,7 @@ class FacultyStudents(models.Model):
                            'login': values['login'],
                         })
         obj.write({'groups_id': [(4, group_user.id)]})
+        
         res.user_id = obj.id
         return res
 
