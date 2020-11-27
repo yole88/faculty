@@ -117,6 +117,9 @@
 				<field name="user_id"/>
 				<filter string="My course" name="my"
                             domain="[('professor_id.user_id', '=', uid)]"/>
+                <group string="Group By">
+                    <filter name="professor" string="Professor" context="{'group_by': 'professor_id'}"/>
+                </group>
             </search>
         </field>
     </record>
@@ -171,6 +174,7 @@
 			<tree>
 				<field name="name"/>
 				<field name="credit"/>
+                <field name="state"/>
 			</tree>
 		</field>
 	 </record>
@@ -180,6 +184,12 @@
             <field name="model">faculty.course</field>
             <field name="arch" type="xml">
                 <form>
+                     <header>
+                        <button name="set_close" string="Close" type="object" states="draft" class="oe_highlight"
+                                groups="base.group_user,faculty.faculty_administrator"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,close"
+                               statusbar_colors='{"close":"blue"}' readonly="1"/>
+                   </header>
                     <sheet>
 						 <div class="oe_button_box" name="button_box">
 							 <button class="oe_stat_button" type="action"
@@ -203,7 +213,33 @@
                     </sheet>
                 </form>
             </field>
-        </record>
+    </record>
+
+    <record id="view_faculty_exam_note" model="ir.ui.view">
+        <field name="name">faculty.exam.note.tree</field>
+        <field name="model">faculty.exam_note</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="student_id"/>
+                <field name="value_note"/>
+            </tree>
+        </field>
+	 </record>
+
+
+    <record id="faculty_course_exam_search" model="ir.ui.view">
+        <field name="name">faculty.course.exam.search</field>
+        <field name="model">faculty.course_exam</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="course_id"/>
+				<field name="date"/>
+                <group string="Group By">
+                    <filter name="course" string="Course" context="{'group_by': 'course_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
 
      <record id="view_course_exam" model="ir.ui.view">
             <field name="name">course.exam.tree</field>
@@ -228,10 +264,15 @@
                              <button class="oe_stat_button" name="attachment_documents" type="object" icon="fa-file-text-o">
                                  <field string="Documents" name="doc_count" widget="statinfo"/>
                              </button>
+                              <button class="oe_stat_button" name="get_note" type="object"
+                                      icon="fa-pencil-square-o">
+                                 <field string="Note" name="note_count" widget="statinfo"/>
+                             </button>
 						 </div>
                         <group>
                             <group>
-                                <field name="course_id"/>
+                                <field name="course_id" options="{'no_create': True}"
+                                       domain="[('state','=','close')]"/>
                             </group>
                              <group>
                                 <field name="date"/>

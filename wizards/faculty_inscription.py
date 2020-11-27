@@ -26,7 +26,7 @@ class FacultyInscription(models.TransientModel):
         else:
             raise UserError(
                 _(
-                    'No Health Professional associated to this user!'
+                    'This student is already registered in a course'
                 ))
 
 

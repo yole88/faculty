@@ -15,8 +15,13 @@
             <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
 	    </record>
 
-		<record model="res.groups" id="faculty_consultant">
-	        <field name="name">Consultant</field>
+		<record model="res.groups" id="faculty_professor">
+	        <field name="name">Professor</field>
+	        <field name="category_id" ref="faculty_category"/>
+	    </record>
+
+		<record model="res.groups" id="faculty_student">
+	        <field name="name">Student</field>
 	        <field name="category_id" ref="faculty_category"/>
 	    </record>
 

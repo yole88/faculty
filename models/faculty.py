@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models, _
-import base64
-
 
 
 class FacultyCourse(models.Model):
@@ -16,6 +14,7 @@ class FacultyCourse(models.Model):
     student_line_ids = fields.One2many('faculty.course.line', 'course_id', string='Students')
     user_id = fields.Many2one('res.users', 'Users')
     student_count = fields.Integer(compute='_compute_students_count', string="Students Count")
+    state = fields.Selection([('draft', 'Draft'), ('close', 'Close')], string="State", default='draft')
 
     @api.onchange('professor_id')
     def _onchange_user(self):
@@ -28,6 +27,10 @@ class FacultyCourse(models.Model):
         result = dict((data['course_id'][0], data['course_id_count']) for data in student_data)
         for student in self:
             student.student_count = result.get(student.id, 0)
+
+    def set_close(self):
+        for course in self:
+            course.write({'state': 'close'})
 
 
 class CourseLine(models.Model):
@@ -100,6 +103,19 @@ class CourseExam(models.Model):
     date = fields.Datetime(string="Date")
     question_ids = fields.One2many('faculty.exam.question', 'exam_id', string='Question')
     doc_count = fields.Integer(compute='_compute_attached_docs_count', string="Number of documents attached")
+    note_ids = fields.One2many('faculty.exam_note', 'exam_id', string='Note')
+    note_count = fields.Integer(compute='_compute_note_count', string="Count note")
+
+    @api.model
+    def create(self, values):
+        #
+        res = super(CourseExam, self).create(values)
+        note = self.env["faculty.exam_note"]
+        course = self.env["faculty.course.line"].search([('course_id', '=', values['course_id'])])
+        for c in course:
+            note.create({'student_id': c.student_id.id,
+                        'exam_id': res.id})
+        return res
 
     def button_download_exam(self):
         if not self.id:
@@ -132,6 +148,19 @@ class CourseExam(models.Model):
         action['context'] = "{'default_res_model': '%s','default_res_id': %d}" % (self._name, self.id)
         return action
 
+    def _compute_note_count(self):
+        self.note_count = len(self.note_ids)
+
+    def get_note(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Notes',
+            'view_mode': 'tree',
+            'res_model': 'faculty.exam_note',
+            'domain': [('exam_id', '=', self.id)],
+        }
+
 
 class ExamQuestion(models.Model):
     _name = 'faculty.exam.question'
@@ -139,6 +168,18 @@ class ExamQuestion(models.Model):
 
     name = fields.Text('Name', required=True)
     exam_id = fields.Many2one('faculty.course_exam', 'Exam')
+
+
+class ExamNote(models.Model):
+    _name = 'faculty.exam_note'
+    _description = 'Exam Note'
+
+    student_id = fields.Many2one('faculty.students', 'Student', readonly=True)
+    exam_id = fields.Many2one('faculty.course_exam', 'Exam')
+    value_note = fields.Float('Note')
+
+
+
 
 
 
