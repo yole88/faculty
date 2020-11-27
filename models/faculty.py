@@ -12,7 +12,7 @@ class FacultyCourse(models.Model):
     credit = fields.Integer('Credits')
     professor_id = fields.Many2one('faculty.professor', 'Professor', required=True)
     student_line_ids = fields.One2many('faculty.course.line', 'course_id', string='Students')
-    user_id = fields.Many2one('res.users', 'Users')
+    user_id = fields.Many2one(related='professor_id.user_id', string='Users', store=True)
     student_count = fields.Integer(compute='_compute_students_count', string="Students Count")
     state = fields.Selection([('draft', 'Draft'), ('close', 'Close')], string="State", default='draft')
 
@@ -55,12 +55,42 @@ class FacultyStudents(models.Model):
 
     name = fields.Char('Name', required=True)
     credit = fields.Integer('Credits')
+    login = fields.Char('Email', required=True)
+    user_id = fields.Many2one('res.users', 'Users', readonly=True)
     course_count = fields.Integer(compute='_compute_course_count', string="Students Count")
 
     def _compute_course_count(self):
         for record in self:
             record.course_count = self.env['faculty.course.line'].search_count(
                 [('student_id', '=', self.id)])
+
+    @api.model
+    def create(self, values):
+        res = super(FacultyStudents, self).create(values)
+        group_user = self.env.ref('faculty.faculty_student')
+        user = self.env["res.users"].sudo()
+        obj = user.create({'name': values['name'],
+                           'login': values['login'],
+                        })
+        obj.write({'groups_id': [(4, group_user.id)]})
+        res.user_id = obj.id
+        return res
+
+    def write(self, vals):
+        res = super(FacultyStudents, self).write(vals)
+        if 'name' in vals or 'login' in vals:
+            user = self.env["res.users"].sudo().search([('id', '=', self.user_id.id)])
+            user.write({'name': self.name,
+                        'login': self.login,
+                       })
+        return res
+
+    def unlink(self):
+        for line in self:
+            user = self.env["res.users"].sudo().search([('id', '=', line.user_id.id)])
+            for record in user:
+                record.unlink()
+        return super(FacultyStudents, self).unlink()
 
     def get_courses(self):
         self.ensure_one()
@@ -80,9 +110,38 @@ class FacultyProfessor(models.Model):
     _description = 'Faculty Professor'
 
     name = fields.Char('Name', required=True)
-    user_id = fields.Many2one('res.users', 'Users', required=True)
-
+    login = fields.Char('Email', required=True)
+    user_id = fields.Many2one('res.users', 'Users', readonly=True)
     course_count = fields.Integer(compute='_compute_course_count', string="Students Count")
+
+    @api.model
+    def create(self, values):
+        res = super(FacultyProfessor, self).create(values)
+        group_user = self.env.ref('faculty.faculty_professor')
+        user = self.env["res.users"].sudo()
+        obj = user.create({'name': values['name'],
+                           'login': values['login'],
+                        })
+        obj.write({'groups_id': [(4, group_user.id)]})
+        res.user_id = obj.id
+
+        return res
+
+    def write(self, vals):
+        res = super(FacultyProfessor, self).write(vals)
+        if 'name' in vals or 'login' in vals:
+            user = self.env["res.users"].sudo().search([('id', '=', self.user_id.id)])
+            user.write({'name': self.name,
+                        'login': self.login,
+                       })
+        return res
+
+    def unlink(self):
+        for line in self:
+            user = self.env["res.users"].sudo().search([('id', '=', line.user_id.id)])
+            for record in user:
+                record.unlink()
+        return super(FacultyProfessor, self).unlink()
 
     def _compute_course_count(self):
         for record in self:
