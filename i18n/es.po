@@ -1,0 +1,341 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* faculty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-27 00:00+0000\n"
+"PO-Revision-Date: 2020-11-27 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: faculty
+#: model_terms:ir.ui.view,arch_db:faculty.report_course_exam_template
+msgid "<span>Examen de curso</span>"
+msgstr ""
+
+#. module: faculty
+#: model:res.groups,name:faculty.faculty_administrator
+msgid "Administrator"
+msgstr "Administrador"
+
+#. module: faculty
+#: model_terms:ir.ui.view,arch_db:faculty.faculty_inscription_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: faculty
+#: model:ir.model.fields.selection,name:faculty.selection__faculty_course__state__close
+#: model_terms:ir.ui.view,arch_db:faculty.faculty_course_form
+msgid "Close"
+msgstr "Cerrado"
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam__note_count
+msgid "Count note"
+msgstr "Cantidad notas"
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam__course_id
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_line__course_id
+#: model:ir.model.fields,field_description:faculty.field_faculty_inscription_wizard__course_id
+#: model_terms:ir.ui.view,arch_db:faculty.faculty_course_exam_search
+msgid "Course"
+msgstr "Curso"
+
+#. module: faculty
+#: model:ir.model,name:faculty.model_faculty_course_line
+msgid "Course Line"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model,name:faculty.model_faculty_course_exam
+msgid "Course exam"
+msgstr "Examen de curso"
+
+#. module: faculty
+#: model:ir.actions.act_window,name:faculty.action_faculty_course
+#: model:ir.ui.menu,name:faculty.menu_course
+#: model_terms:ir.ui.view,arch_db:faculty.faculty_professor_form
+#: model_terms:ir.ui.view,arch_db:faculty.faculty_students_form
+msgid "Courses"
+msgstr "Cursos"
+
+#. module: faculty
+#: model:ir.actions.act_window,name:faculty.action_faculty_course_line
+msgid "Courses Line"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__create_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam__create_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_line__create_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_note__create_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_question__create_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_inscription_wizard__create_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_professor__create_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_students__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__create_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam__create_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_line__create_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_note__create_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_question__create_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_inscription_wizard__create_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_professor__create_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_students__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__credit
+#: model:ir.model.fields,field_description:faculty.field_faculty_students__credit
+msgid "Credits"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam__date
+msgid "Date"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__description
+#: model_terms:ir.ui.view,arch_db:faculty.faculty_course_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__display_name
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam__display_name
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_line__display_name
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_note__display_name
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_question__display_name
+#: model:ir.model.fields,field_description:faculty.field_faculty_inscription_wizard__display_name
+#: model:ir.model.fields,field_description:faculty.field_faculty_professor__display_name
+#: model:ir.model.fields,field_description:faculty.field_faculty_students__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: faculty
+#: model_terms:ir.ui.view,arch_db:faculty.course_exam_form
+msgid "Documents"
+msgstr "Subir examen"
+
+#. module: faculty
+#: model_terms:ir.ui.view,arch_db:faculty.course_exam_form
+msgid "Download exam"
+msgstr "Descargar examen"
+
+#. module: faculty
+#: model:ir.model.fields.selection,name:faculty.selection__faculty_course__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: faculty
+#: model:ir.actions.act_window,name:faculty.action_course_exam
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_note__exam_id
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_question__exam_id
+#: model:ir.ui.menu,name:faculty.menu_exam
+msgid "Exam"
+msgstr "Examen"
+
+#. module: faculty
+#: model:ir.model,name:faculty.model_faculty_exam_note
+msgid "Exam Note"
+msgstr "Nota del examen"
+
+#. module: faculty
+#: model:ir.model,name:faculty.model_faculty_exam_question
+msgid "Exam Question"
+msgstr "Preguntas del examen"
+
+#. module: faculty
+#: model:ir.module.category,name:faculty.faculty_category
+#: model:ir.ui.menu,name:faculty.menu_faculty
+#: model:ir.ui.menu,name:faculty.menu_main_principal
+msgid "Faculty"
+msgstr "Faculta"
+
+#. module: faculty
+#: model:ir.model,name:faculty.model_faculty_course
+msgid "Faculty Course"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model,name:faculty.model_faculty_inscription_wizard
+msgid "Faculty Inscription"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model,name:faculty.model_faculty_professor
+msgid "Faculty Professor"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model,name:faculty.model_faculty_students
+msgid "Faculty Students"
+msgstr ""
+
+#. module: faculty
+#: model_terms:ir.ui.view,arch_db:faculty.faculty_course_exam_search
+#: model_terms:ir.ui.view,arch_db:faculty.faculty_course_search
+msgid "Group By"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__id
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam__id
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_line__id
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_note__id
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_question__id
+#: model:ir.model.fields,field_description:faculty.field_faculty_inscription_wizard__id
+#: model:ir.model.fields,field_description:faculty.field_faculty_professor__id
+#: model:ir.model.fields,field_description:faculty.field_faculty_students__id
+msgid "ID"
+msgstr ""
+
+#. module: faculty
+#: model:ir.actions.act_window,name:faculty.action_faculty_inscription_wizard
+#: model:ir.ui.menu,name:faculty.menu_nnscriptionr
+#: model_terms:ir.ui.view,arch_db:faculty.faculty_inscription_wizard_form
+msgid "Inscription"
+msgstr "Inscripción"
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course____last_update
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam____last_update
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_line____last_update
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_note____last_update
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_question____last_update
+#: model:ir.model.fields,field_description:faculty.field_faculty_inscription_wizard____last_update
+#: model:ir.model.fields,field_description:faculty.field_faculty_professor____last_update
+#: model:ir.model.fields,field_description:faculty.field_faculty_students____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__write_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam__write_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_line__write_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_note__write_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_question__write_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_inscription_wizard__write_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_professor__write_uid
+#: model:ir.model.fields,field_description:faculty.field_faculty_students__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__write_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam__write_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_line__write_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_note__write_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_question__write_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_inscription_wizard__write_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_professor__write_date
+#: model:ir.model.fields,field_description:faculty.field_faculty_students__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: faculty
+#: model_terms:ir.ui.view,arch_db:faculty.faculty_course_search
+msgid "My course"
+msgstr "Mis cursos"
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__name
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_question__name
+#: model:ir.model.fields,field_description:faculty.field_faculty_professor__name
+#: model:ir.model.fields,field_description:faculty.field_faculty_students__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam__note_ids
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_note__value_note
+#: model_terms:ir.ui.view,arch_db:faculty.course_exam_form
+msgid "Note"
+msgstr "Notas"
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam__doc_count
+msgid "Number of documents attached"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__professor_id
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_line__professor_id
+#: model_terms:ir.ui.view,arch_db:faculty.faculty_course_search
+#: model:res.groups,name:faculty.faculty_professor
+msgid "Professor"
+msgstr "Profesor"
+
+#. module: faculty
+#: model:ir.actions.act_window,name:faculty.action_faculty_professors
+#: model:ir.ui.menu,name:faculty.menu_professor
+msgid "Professors"
+msgstr "Profesores"
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_exam__question_ids
+msgid "Question"
+msgstr "Pregunta"
+
+#. module: faculty
+#: model_terms:ir.ui.view,arch_db:faculty.course_exam_form
+msgid "Questions"
+msgstr "Preguntas"
+
+#. module: faculty
+#: model:ir.actions.report,name:faculty.report_course_exam
+msgid "Report exam"
+msgstr ""
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__state
+msgid "State"
+msgstr "Estado"
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_exam_note__student_id
+#: model:ir.model.fields,field_description:faculty.field_faculty_inscription_wizard__student_id
+#: model:res.groups,name:faculty.faculty_student
+msgid "Student"
+msgstr "Estudiante"
+
+#. module: faculty
+#: model:ir.actions.act_window,name:faculty.action_faculty_students
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__student_line_ids
+#: model:ir.model.fields,field_description:faculty.field_faculty_course_line__student_id
+#: model:ir.ui.menu,name:faculty.menu_students
+#: model_terms:ir.ui.view,arch_db:faculty.faculty_course_form
+msgid "Students"
+msgstr "Estudiantes"
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__student_count
+#: model:ir.model.fields,field_description:faculty.field_faculty_professor__course_count
+#: model:ir.model.fields,field_description:faculty.field_faculty_students__course_count
+msgid "Students Count"
+msgstr "Estudiantes"
+
+#. module: faculty
+#: code:addons/faculty/wizards/faculty_inscription.py:0
+#, python-format
+msgid "This student is already registered in a course"
+msgstr "Ya está este estudiante está registardo en un curso."
+
+#. module: faculty
+#: model:ir.model.fields,field_description:faculty.field_faculty_course__user_id
+#: model:ir.model.fields,field_description:faculty.field_faculty_professor__user_id
+msgid "Users"
+msgstr "Usuario"
