@@ -41,6 +41,13 @@ class CourseLine(models.Model):
     course_id = fields.Many2one('faculty.course', 'Course')
     professor_id = fields.Many2one('faculty.professor', 'Professor')
 
+    def unlink(self):
+        for line in self:
+            student = self.env['faculty.students'].search([('id', '=', line.student_id.id)])
+            value = student.credit + line.course_id.credit
+            student.write({'credit': value})
+        return super(CourseLine, self).unlink()
+
 
 class FacultyStudents(models.Model):
     _name = 'faculty.students'
