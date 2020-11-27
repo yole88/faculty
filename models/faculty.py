@@ -108,7 +108,6 @@ class CourseExam(models.Model):
 
     @api.model
     def create(self, values):
-        #
         res = super(CourseExam, self).create(values)
         note = self.env["faculty.exam_note"]
         course = self.env["faculty.course.line"].search([('course_id', '=', values['course_id'])])
